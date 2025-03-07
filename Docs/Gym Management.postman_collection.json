@@ -1,0 +1,1435 @@
+{
+	"info": {
+		"_postman_id": "82234d8e-d290-4836-8a94-05387081591d",
+		"name": "Gym Management",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "40458689"
+	},
+	"item": [
+		{
+			"name": "Member & Membership",
+			"item": [
+				{
+					"name": "Members",
+					"item": [
+						{
+							"name": "Adding members",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"firstName\" :\"Jake\",\r\n    \"lastName\":\"Foster\",\r\n    \"email\":\"jake@gmail.com\",\r\n    \"phoneNumber\":\"8765432109\",\r\n    \"dateOfBirth\": \"1996-01-24\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:8082/api/members/add",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8082",
+									"path": [
+										"api",
+										"members",
+										"add"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Update members",
+							"request": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n        \"firstName\": \"Olivia\",\r\n        \"lastName\": \"Brown\",\r\n        \"email\": \"olivia.brown@example.com\",\r\n        \"phoneNumber\": \"7654321098\",\r\n        \"dateOfBirth\": \"1993-12-10\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:8082/api/members/update/4",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8082",
+									"path": [
+										"api",
+										"members",
+										"update",
+										"4"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Retreving members",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:8082/members",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8082",
+									"path": [
+										"members"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Delete members",
+							"request": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:8082/api/members/delete/1",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8082",
+									"path": [
+										"api",
+										"members",
+										"delete",
+										"1"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Retreve by id",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:8082/members/1",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8082",
+									"path": [
+										"members",
+										"1"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Memberships",
+					"item": [
+						{
+							"name": "Adding memberships",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:8082/api/memberships/members/5?type=PREMIUM",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8082",
+									"path": [
+										"api",
+										"memberships",
+										"members",
+										"5"
+									],
+									"query": [
+										{
+											"key": "type",
+											"value": "PREMIUM"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Renew membership",
+							"request": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:8082/api/memberships/7/renew",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8082",
+									"path": [
+										"api",
+										"memberships",
+										"7",
+										"renew"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Deactivate membership",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:8082/api/memberships/2/deactivate",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8082",
+									"path": [
+										"api",
+										"memberships",
+										"2",
+										"deactivate"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Get memberships",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:8082/memberships",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8082",
+									"path": [
+										"memberships"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Get each member",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:8082/api/memberships",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8082",
+									"path": [
+										"api",
+										"memberships"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "Fitness",
+			"item": [
+				{
+					"name": "Create Exercise",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"Incline Bench Press\",\r\n    \"category\": \"Strength\",\r\n    \"muscleGroup\": \"Chest\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8083/fitness/exercises",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8083",
+							"path": [
+								"fitness",
+								"exercises"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get all Exercise",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8083/fitness/exercises",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8083",
+							"path": [
+								"fitness",
+								"exercises"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create Workout",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8083/fitness/workouts?memberId=1&workoutName=Chest",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8083",
+							"path": [
+								"fitness",
+								"workouts"
+							],
+							"query": [
+								{
+									"key": "memberId",
+									"value": "1"
+								},
+								{
+									"key": "workoutName",
+									"value": "Chest"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Excerise to workput",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8083/api/fitness/workouts/1/exercises?exerciseId=2&sets=4&reps=10&weight=50.0",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8083",
+							"path": [
+								"api",
+								"fitness",
+								"workouts",
+								"1",
+								"exercises"
+							],
+							"query": [
+								{
+									"key": "exerciseId",
+									"value": "2"
+								},
+								{
+									"key": "sets",
+									"value": "4"
+								},
+								{
+									"key": "reps",
+									"value": "10"
+								},
+								{
+									"key": "weight",
+									"value": "50.0"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get all workouts",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8083/fitness/workouts/member/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8083",
+							"path": [
+								"fitness",
+								"workouts",
+								"member",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete exercise from workout",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8083/api/fitness/workouts/b52aecb2-9a08-4d33-a504-fb8b959b6eaa/exercises/10c297ad-4ba4-4c38-8949-47797d567501",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8083",
+							"path": [
+								"api",
+								"fitness",
+								"workouts",
+								"b52aecb2-9a08-4d33-a504-fb8b959b6eaa",
+								"exercises",
+								"10c297ad-4ba4-4c38-8949-47797d567501"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Workout",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8083/fitness/workouts/member/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8083",
+							"path": [
+								"fitness",
+								"workouts",
+								"member",
+								"1"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Auth",
+			"item": [
+				{
+					"name": "Register user",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"username\":\"Alex\",\r\n    \"password\":\"alex@123\",\r\n    \"role\":\"MEMBER\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8084/auth/register",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8084",
+							"path": [
+								"auth",
+								"register"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Login user",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"username\":\"Alex\",\r\n    \"password\":\"alex@123\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8084/auth/login",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8084",
+							"path": [
+								"auth",
+								"login"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Using Gateway",
+			"item": [
+				{
+					"name": "Fitness-service",
+					"item": [
+						{
+							"name": "Exercise",
+							"item": [
+								{
+									"name": "Create Exercise",
+									"request": {
+										"auth": {
+											"type": "bearer",
+											"bearer": [
+												{
+													"key": "token",
+													"value": "eyJhbGciOiJIUzI1NiJ9.eyJyb2xlcyI6IkFkbWluIiwic3ViIjoiYW5pQGdtYWlsLmNvbSIsImlhdCI6MTc0MDk4ODY1NSwiZXhwIjoxNzQwOTkyMjU1fQ.DWZnlBDE9QdkJ5szGgAtaQ2Z9uLWmbwqJuNnmrqAtzc",
+													"type": "string"
+												}
+											]
+										},
+										"method": "POST",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n    \"name\": \"Front Ex\",\r\n    \"category\": \"Strength\",\r\n    \"muscleGroup\": \"Legs\"\r\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "http://localhost:1235/fitness/exercises",
+											"protocol": "http",
+											"host": [
+												"localhost"
+											],
+											"port": "1235",
+											"path": [
+												"fitness",
+												"exercises"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "Get all Exercise",
+									"request": {
+										"auth": {
+											"type": "bearer",
+											"bearer": [
+												{
+													"key": "token",
+													"value": "eyJhbGciOiJIUzI1NiJ9.eyJyb2xlcyI6IkFkbWluIiwic3ViIjoiYWxleEBnbWFpbC5jb20iLCJpYXQiOjE3NDA4OTE3OTYsImV4cCI6MTc0MDg5NTM5Nn0.9YsDXXW98u2LIXAReNEJL5z7EXRf05jK-ahpwMsTpEw",
+													"type": "string"
+												}
+											]
+										},
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "http://localhost:1235/fitness/exercises",
+											"protocol": "http",
+											"host": [
+												"localhost"
+											],
+											"port": "1235",
+											"path": [
+												"fitness",
+												"exercises"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "Exercise to workout",
+									"request": {
+										"auth": {
+											"type": "bearer",
+											"bearer": [
+												{
+													"key": "token",
+													"value": "eyJhbGciOiJIUzI1NiJ9.eyJyb2xlcyI6IkFkbWluIiwic3ViIjoiYW5pQGdtYWlsLmNvbSIsImlhdCI6MTc0MDk4ODY1NSwiZXhwIjoxNzQwOTkyMjU1fQ.DWZnlBDE9QdkJ5szGgAtaQ2Z9uLWmbwqJuNnmrqAtzc",
+													"type": "string"
+												}
+											]
+										},
+										"method": "POST",
+										"header": [],
+										"url": {
+											"raw": "http://localhost:1235/fitness/workouts/1/exercises?exerciseId=1&sets=5&reps=10&weight=50.0",
+											"protocol": "http",
+											"host": [
+												"localhost"
+											],
+											"port": "1235",
+											"path": [
+												"fitness",
+												"workouts",
+												"1",
+												"exercises"
+											],
+											"query": [
+												{
+													"key": "exerciseId",
+													"value": "1"
+												},
+												{
+													"key": "sets",
+													"value": "5"
+												},
+												{
+													"key": "reps",
+													"value": "10"
+												},
+												{
+													"key": "weight",
+													"value": "50.0"
+												}
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "Delete exerice from workout",
+									"request": {
+										"auth": {
+											"type": "bearer",
+											"bearer": [
+												{
+													"key": "token",
+													"value": "eyJhbGciOiJIUzI1NiJ9.eyJyb2xlcyI6IkFkbWluIiwic3ViIjoiYW5pQGdtYWlsLmNvbSIsImlhdCI6MTc0MDk4NzQxMCwiZXhwIjoxNzQwOTkxMDEwfQ.ej8C461dTsFwSKES405artGMB9emRsCYpipVvnQ9Bs0",
+													"type": "string"
+												}
+											]
+										},
+										"method": "DELETE",
+										"header": [],
+										"url": {
+											"raw": "http://localhost:1235/fitness/workouts/2/exercises/",
+											"protocol": "http",
+											"host": [
+												"localhost"
+											],
+											"port": "1235",
+											"path": [
+												"fitness",
+												"workouts",
+												"2",
+												"exercises",
+												""
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "Delete Exercise",
+									"request": {
+										"auth": {
+											"type": "bearer",
+											"bearer": [
+												{
+													"key": "token",
+													"value": "eyJhbGciOiJIUzI1NiJ9.eyJyb2xlcyI6IkFkbWluIiwic3ViIjoiYWxleEBnbWFpbC5jb20iLCJpYXQiOjE3NDA4OTE3OTYsImV4cCI6MTc0MDg5NTM5Nn0.9YsDXXW98u2LIXAReNEJL5z7EXRf05jK-ahpwMsTpEw",
+													"type": "string"
+												}
+											]
+										},
+										"method": "DELETE",
+										"header": [],
+										"url": {
+											"raw": "http://localhost:1235/fitness/exercises/3",
+											"protocol": "http",
+											"host": [
+												"localhost"
+											],
+											"port": "1235",
+											"path": [
+												"fitness",
+												"exercises",
+												"3"
+											]
+										}
+									},
+									"response": []
+								}
+							]
+						},
+						{
+							"name": "Workout",
+							"item": [
+								{
+									"name": "Create Workout",
+									"request": {
+										"auth": {
+											"type": "bearer",
+											"bearer": [
+												{
+													"key": "token",
+													"value": "eyJhbGciOiJIUzI1NiJ9.eyJyb2xlcyI6IkFkbWluIiwic3ViIjoiYW5pQGdtYWlsLmNvbSIsImlhdCI6MTc0MDk5MzgxNywiZXhwIjoxNzQwOTk3NDE3fQ.uQPxfkltIKZ3CwagYH6R5ezwybum6iIXrVtMUcXK7YA",
+													"type": "string"
+												}
+											]
+										},
+										"method": "POST",
+										"header": [],
+										"url": {
+											"raw": "http://localhost:1235/fitness/workouts?memberId=3&workoutName=Cheast Day",
+											"protocol": "http",
+											"host": [
+												"localhost"
+											],
+											"port": "1235",
+											"path": [
+												"fitness",
+												"workouts"
+											],
+											"query": [
+												{
+													"key": "memberId",
+													"value": "3"
+												},
+												{
+													"key": "workoutName",
+													"value": "Cheast Day"
+												}
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "Delete workout",
+									"request": {
+										"auth": {
+											"type": "bearer",
+											"bearer": [
+												{
+													"key": "token",
+													"value": "eyJhbGciOiJIUzI1NiJ9.eyJyb2xlcyI6IlVTRVIiLCJzdWIiOiJKaXNobnUiLCJpYXQiOjE3NDAxMzg5MTksImV4cCI6MTc0MDE0MjUxOX0.x5l9z_4njZ30qdlK5YYrlU98JQyVA3TMF6qjvVrw8bw",
+													"type": "string"
+												}
+											]
+										},
+										"method": "DELETE",
+										"header": [],
+										"url": {
+											"raw": "http://localhost:1235/fitness/workouts/member/3",
+											"protocol": "http",
+											"host": [
+												"localhost"
+											],
+											"port": "1235",
+											"path": [
+												"fitness",
+												"workouts",
+												"member",
+												"3"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "GetAll workouts",
+									"request": {
+										"auth": {
+											"type": "bearer",
+											"bearer": [
+												{
+													"key": "token",
+													"value": "eyJhbGciOiJIUzI1NiJ9.eyJyb2xlcyI6IkFkbWluIiwic3ViIjoiYW5pQGdtYWlsLmNvbSIsImlhdCI6MTc0MDk4ODY1NSwiZXhwIjoxNzQwOTkyMjU1fQ.DWZnlBDE9QdkJ5szGgAtaQ2Z9uLWmbwqJuNnmrqAtzc",
+													"type": "string"
+												}
+											]
+										},
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "http://localhost:1235/fitness/getallworkouts",
+											"protocol": "http",
+											"host": [
+												"localhost"
+											],
+											"port": "1235",
+											"path": [
+												"fitness",
+												"getallworkouts"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "Get workout by id",
+									"request": {
+										"auth": {
+											"type": "bearer",
+											"bearer": [
+												{
+													"key": "token",
+													"value": "eyJhbGciOiJIUzI1NiJ9.eyJyb2xlcyI6IkFkbWluIiwic3ViIjoiYWxleEBnbWFpbC5jb20iLCJpYXQiOjE3NDA4OTE3OTYsImV4cCI6MTc0MDg5NTM5Nn0.9YsDXXW98u2LIXAReNEJL5z7EXRf05jK-ahpwMsTpEw",
+													"type": "string"
+												}
+											]
+										},
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "http://localhost:1235/fitness/workouts/1",
+											"protocol": "http",
+											"host": [
+												"localhost"
+											],
+											"port": "1235",
+											"path": [
+												"fitness",
+												"workouts",
+												"1"
+											]
+										}
+									},
+									"response": []
+								}
+							]
+						},
+						{
+							"name": "Get member workout",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "eyJhbGciOiJIUzI1NiJ9.eyJyb2xlcyI6IkFkbWluIiwic3ViIjoiYWxleEBnbWFpbC5jb20iLCJpYXQiOjE3NDA4OTE3OTYsImV4cCI6MTc0MDg5NTM5Nn0.9YsDXXW98u2LIXAReNEJL5z7EXRf05jK-ahpwMsTpEw",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:1235/fitness/workouts/member/1",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "1235",
+									"path": [
+										"fitness",
+										"workouts",
+										"member",
+										"1"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Member & Membership",
+					"item": [
+						{
+							"name": "Member",
+							"item": [
+								{
+									"name": "Adding member",
+									"request": {
+										"auth": {
+											"type": "bearer",
+											"bearer": [
+												{
+													"key": "token",
+													"value": "eyJhbGciOiJIUzI1NiJ9.eyJyb2xlcyI6IkFkbWluIiwic3ViIjoiYW5pQGdtYWlsLmNvbSIsImlhdCI6MTc0MDk5MzgxNywiZXhwIjoxNzQwOTk3NDE3fQ.uQPxfkltIKZ3CwagYH6R5ezwybum6iIXrVtMUcXK7YA",
+													"type": "string"
+												}
+											]
+										},
+										"method": "POST",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n    \"firstName\" :\"Aniruddh\",\r\n    \"lastName\":\"S\",\r\n    \"email\":\"Aniruddh@gmail.com\",\r\n    \"phoneNumber\":\"9876543524\",\r\n    \"dateOfBirth\": \"2002-12-23\"\r\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "http://localhost:1235/members/add",
+											"protocol": "http",
+											"host": [
+												"localhost"
+											],
+											"port": "1235",
+											"path": [
+												"members",
+												"add"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "Retreving by ID",
+									"request": {
+										"auth": {
+											"type": "bearer",
+											"bearer": [
+												{
+													"key": "token",
+													"value": "eyJhbGciOiJIUzI1NiJ9.eyJyb2xlcyI6IkFETUlOIiwic3ViIjoiYW5pQGV4YW1wbGUuY29tIiwiaWF0IjoxNzQwNjU4NzQyLCJleHAiOjE3NDA2NjIzNDJ9.cE-eL7ewYTUY9kjJFM2Sf-5IlM7dEXG-Y7jm_jSyP5c",
+													"type": "string"
+												}
+											]
+										},
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "http://localhost:1235/members/get/6",
+											"protocol": "http",
+											"host": [
+												"localhost"
+											],
+											"port": "1235",
+											"path": [
+												"members",
+												"get",
+												"6"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "Retreving all members",
+									"request": {
+										"auth": {
+											"type": "bearer",
+											"bearer": [
+												{
+													"key": "token",
+													"value": "eyJhbGciOiJIUzI1NiJ9.eyJyb2xlcyI6IkFkbWluIiwic3ViIjoiYWxleEBnbWFpbC5jb20iLCJpYXQiOjE3NDA4OTE3OTYsImV4cCI6MTc0MDg5NTM5Nn0.9YsDXXW98u2LIXAReNEJL5z7EXRf05jK-ahpwMsTpEw",
+													"type": "string"
+												}
+											]
+										},
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "http://localhost:1235/members",
+											"protocol": "http",
+											"host": [
+												"localhost"
+											],
+											"port": "1235",
+											"path": [
+												"members"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "Delete",
+									"request": {
+										"auth": {
+											"type": "bearer",
+											"bearer": [
+												{
+													"key": "token",
+													"value": "eyJhbGciOiJIUzI1NiJ9.eyJyb2xlcyI6IkFkbWluIiwic3ViIjoiYW5pQGdtYWlsLmNvbSIsImlhdCI6MTc0MDk5NjU5NCwiZXhwIjoxNzQxMDAwMTk0fQ.RxQHehhtnuaexmgk8VAlYTXgiA0V7Os276wOVEEc5G0",
+													"type": "string"
+												}
+											]
+										},
+										"method": "DELETE",
+										"header": [],
+										"url": {
+											"raw": "http://localhost:1235/members/delete/4",
+											"protocol": "http",
+											"host": [
+												"localhost"
+											],
+											"port": "1235",
+											"path": [
+												"members",
+												"delete",
+												"4"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "Update",
+									"request": {
+										"auth": {
+											"type": "bearer",
+											"bearer": [
+												{
+													"key": "token",
+													"value": "eyJhbGciOiJIUzI1NiJ9.eyJyb2xlcyI6IlVTRVIiLCJzdWIiOiJKaXNobnUiLCJpYXQiOjE3NDAxMzg5MTksImV4cCI6MTc0MDE0MjUxOX0.x5l9z_4njZ30qdlK5YYrlU98JQyVA3TMF6qjvVrw8bw",
+													"type": "string"
+												}
+											]
+										},
+										"method": "PUT",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n    \"firstName\" :\"Sara\",\r\n    \"lastName\":\"F\",\r\n    \"email\":\"sara123@gmail.com\",\r\n    \"phoneNumber\":\"98765435243\",\r\n    \"dateOfBirth\": \"1995-03-31\"\r\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "http://localhost:1235/members/update/1",
+											"protocol": "http",
+											"host": [
+												"localhost"
+											],
+											"port": "1235",
+											"path": [
+												"members",
+												"update",
+												"1"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "Retreving by email",
+									"request": {
+										"auth": {
+											"type": "bearer",
+											"bearer": [
+												{
+													"key": "token",
+													"value": "eyJhbGciOiJIUzI1NiJ9.eyJyb2xlcyI6IlVzZXIiLCJzdWIiOiJhbnVzaGthaXNjb29sQGdtYWlsLmNvbSIsImlhdCI6MTc0MDk4NDUwNSwiZXhwIjoxNzQwOTg4MTA1fQ.Q7qV-sF4He4BR7G3s400D8GJy1CEWVDdPsCsyd6hjn8",
+													"type": "string"
+												}
+											]
+										},
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "http://localhost:1235/members/getByEmail/anushkaiscool@gmail.com",
+											"protocol": "http",
+											"host": [
+												"localhost"
+											],
+											"port": "1235",
+											"path": [
+												"members",
+												"getByEmail",
+												"anushkaiscool@gmail.com"
+											]
+										}
+									},
+									"response": []
+								}
+							]
+						},
+						{
+							"name": "Membership",
+							"item": [
+								{
+									"name": "Adding memberships",
+									"request": {
+										"auth": {
+											"type": "bearer",
+											"bearer": [
+												{
+													"key": "token",
+													"value": "eyJhbGciOiJIUzI1NiJ9.eyJyb2xlcyI6IkFkbWluIiwic3ViIjoiYWxleEBnbWFpbC5jb20iLCJpYXQiOjE3NDA5NzkwMTEsImV4cCI6MTc0MDk4MjYxMX0.6h7XgOINZTGr1LLxMJcHzraBHxlxBuVrc3KsNQNW-Ss",
+													"type": "string"
+												}
+											]
+										},
+										"method": "POST",
+										"header": [],
+										"url": {
+											"raw": "http://localhost:1235/memberships/1?type=PREMIUM",
+											"protocol": "http",
+											"host": [
+												"localhost"
+											],
+											"port": "1235",
+											"path": [
+												"memberships",
+												"1"
+											],
+											"query": [
+												{
+													"key": "type",
+													"value": "PREMIUM"
+												}
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "Get Memberships",
+									"request": {
+										"auth": {
+											"type": "bearer",
+											"bearer": [
+												{
+													"key": "token",
+													"value": "eyJhbGciOiJIUzI1NiJ9.eyJyb2xlcyI6IkFkbWluIiwic3ViIjoiYWxleEBnbWFpbC5jb20iLCJpYXQiOjE3NDA3MjM1ODYsImV4cCI6MTc0MDcyNzE4Nn0.tzX4JLm6AYoiHLP56udpAjVoimDPMdlEhbuc_rNNnUQ",
+													"type": "string"
+												}
+											]
+										},
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "http://localhost:1235/memberships",
+											"protocol": "http",
+											"host": [
+												"localhost"
+											],
+											"port": "1235",
+											"path": [
+												"memberships"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "Get Memberships by Id",
+									"request": {
+										"auth": {
+											"type": "bearer",
+											"bearer": [
+												{
+													"key": "token",
+													"value": "eyJhbGciOiJIUzI1NiJ9.eyJyb2xlcyI6IkFkbWluIiwic3ViIjoiYWxleEBnbWFpbC5jb20iLCJpYXQiOjE3NDA5NzYzNDQsImV4cCI6MTc0MDk3OTk0NH0.7uYfPLVkZSaYrKF_NX78EtNkTcgfMHW9Hy7Pjs1LWZQ",
+													"type": "string"
+												}
+											]
+										},
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "http://localhost:1235/memberships/1",
+											"protocol": "http",
+											"host": [
+												"localhost"
+											],
+											"port": "1235",
+											"path": [
+												"memberships",
+												"1"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "Deactivate Memberships",
+									"request": {
+										"auth": {
+											"type": "bearer",
+											"bearer": [
+												{
+													"key": "token",
+													"value": "eyJhbGciOiJIUzI1NiJ9.eyJyb2xlcyI6IkFETUlOIiwic3ViIjoiYW5pQGV4YW1wbGUuY29tIiwiaWF0IjoxNzQwNzE2NDQyLCJleHAiOjE3NDA3MjAwNDJ9.rqd7-mCcEh3A9oruZJkM4ZtQO7sHrG60_zDC0N2PYUg",
+													"type": "string"
+												}
+											]
+										},
+										"method": "POST",
+										"header": [],
+										"url": {
+											"raw": "http://localhost:1235/memberships/4/deactivate",
+											"protocol": "http",
+											"host": [
+												"localhost"
+											],
+											"port": "1235",
+											"path": [
+												"memberships",
+												"4",
+												"deactivate"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "Renew Membership",
+									"request": {
+										"auth": {
+											"type": "bearer",
+											"bearer": [
+												{
+													"key": "token",
+													"value": "eyJhbGciOiJIUzI1NiJ9.eyJyb2xlcyI6IlVTRVIiLCJzdWIiOiJKaXNobnUiLCJpYXQiOjE3NDAxMzg5MTksImV4cCI6MTc0MDE0MjUxOX0.x5l9z_4njZ30qdlK5YYrlU98JQyVA3TMF6qjvVrw8bw",
+													"type": "string"
+												}
+											]
+										},
+										"method": "PUT",
+										"header": [],
+										"url": {
+											"raw": "http://localhost:1235/memberships/1/renew",
+											"protocol": "http",
+											"host": [
+												"localhost"
+											],
+											"port": "1235",
+											"path": [
+												"memberships",
+												"1",
+												"renew"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "Upgrade Membership",
+									"request": {
+										"auth": {
+											"type": "bearer",
+											"bearer": [
+												{
+													"key": "token",
+													"value": "eyJhbGciOiJIUzI1NiJ9.eyJyb2xlcyI6IlVTRVIiLCJzdWIiOiJKaXNobnUiLCJpYXQiOjE3NDAxMzg5MTksImV4cCI6MTc0MDE0MjUxOX0.x5l9z_4njZ30qdlK5YYrlU98JQyVA3TMF6qjvVrw8bw",
+													"type": "string"
+												}
+											]
+										},
+										"method": "PUT",
+										"header": [],
+										"url": {
+											"raw": "http://localhost:1235/memberships/1/upgrade?newType=BASIC",
+											"protocol": "http",
+											"host": [
+												"localhost"
+											],
+											"port": "1235",
+											"path": [
+												"memberships",
+												"1",
+												"upgrade"
+											],
+											"query": [
+												{
+													"key": "newType",
+													"value": "BASIC"
+												}
+											]
+										}
+									},
+									"response": []
+								}
+							]
+						}
+					]
+				},
+				{
+					"name": "Security Service",
+					"item": [
+						{
+							"name": "Added new User",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"name\": \"Aniruddh\",\r\n    \"email\": \"ani@gmail.com\",\r\n    \"password\": \"password\",\r\n    \"roles\": \"ADMIN\"\r\n}\r\n ",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:9194/auth/new",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "9194",
+									"path": [
+										"auth",
+										"new"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Login Admin",
+							"request": {
+								"auth": {
+									"type": "noauth"
+								},
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"email\": \"ani@gmail.com\",\r\n    \"password\": \"password\"\r\n}\r\n ",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:9194/auth/authenticate",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "9194",
+									"path": [
+										"auth",
+										"authenticate"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Login User",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"email\": \"anushkaiscool@gmail.com\",\r\n    \"password\": \"password\"\r\n}\r\n ",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:9194/auth/authenticate",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "9194",
+									"path": [
+										"auth",
+										"authenticate"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				}
+			]
+		}
+	]
+}
