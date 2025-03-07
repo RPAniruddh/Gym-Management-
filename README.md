@@ -1,6 +1,6 @@
 # Gym Management 
 
-![Flow Chart]Docs/flow.png
+![Flow Chart](https://github.com/RPAniruddh/Gym-Management-/blob/main/Docs/flow.png)
 
 ## Microservices Architecture
 
