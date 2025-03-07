@@ -8,4 +8,5 @@ import com.gym.management.fitness.models.Workout;
 
 public interface WorkoutRepository extends JpaRepository<Workout, Integer> {
 	List<Workout> findByMemberId(int memberId);
+	
 }

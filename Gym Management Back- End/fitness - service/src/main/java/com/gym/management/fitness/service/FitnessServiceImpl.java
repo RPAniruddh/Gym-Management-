@@ -13,6 +13,7 @@ import com.gym.management.fitness.models.Exercise;
 import com.gym.management.fitness.models.Workout;
 import com.gym.management.fitness.models.WorkoutExercise;
 import com.gym.management.fitness.repository.ExerciseRepository;
+import com.gym.management.fitness.repository.WorkoutExerciseRepository;
 import com.gym.management.fitness.repository.WorkoutRepository;
 
 import jakarta.transaction.Transactional;
@@ -28,6 +29,7 @@ import lombok.RequiredArgsConstructor;
 public class FitnessServiceImpl implements FitnessService {
 	private final WorkoutRepository workoutRepository;
 	private final ExerciseRepository exerciseRepository;
+	private final WorkoutExerciseRepository workoutExerciseRepository;
 	private static final String MEMBER_SERVICE_URL = "http://localhost:8082/members/get/";
 	private final RestTemplate restTemplate;
 
@@ -40,10 +42,11 @@ public class FitnessServiceImpl implements FitnessService {
 	 */
 	@Autowired
 	public FitnessServiceImpl(RestTemplate restTemplate, WorkoutRepository workoutRepository,
-			ExerciseRepository exerciseRepository) {
+			ExerciseRepository exerciseRepository, WorkoutExerciseRepository workoutExerciseRepository) {
 		this.restTemplate = restTemplate;
 		this.workoutRepository = workoutRepository;
 		this.exerciseRepository = exerciseRepository;
+		this.workoutExerciseRepository = workoutExerciseRepository;
 	}
 
 	/**
@@ -99,6 +102,7 @@ public class FitnessServiceImpl implements FitnessService {
 		workoutExercise.setSets(sets);
 		workoutExercise.setReps(reps);
 		workoutExercise.setWeight(weight);
+		workoutExercise.setExerciseName(exercise.getName());
 
 		workout.getExercises().add(workoutExercise);
 		return workoutRepository.save(workout);
@@ -164,6 +168,19 @@ public class FitnessServiceImpl implements FitnessService {
 	}
 
 	/**
+	 * Removes an exercises.
+	 * 
+	 * @param exerciseId  ID of the exercise
+	 */
+	
+	@Override
+	public void deleteExercise(int exerciseId) throws ResourceNotFoundException {
+	    Exercise exercise = exerciseRepository.findById(exerciseId)
+	            .orElseThrow(() -> new ResourceNotFoundException("Exercise not found for this id :: " + exerciseId));
+	    exerciseRepository.delete(exercise);
+	}
+	
+	/**
 	 * Retrieves all workouts.
 	 * 
 	 * @return List of Workout entities.
@@ -190,5 +207,10 @@ public class FitnessServiceImpl implements FitnessService {
 		workout.getExercises().removeIf(we -> we.getExercise().getId() == exerciseId);
 
 		return workoutRepository.save(workout);
+	}
+
+	@Override
+	public List<WorkoutExercise> getWorkoutById(int workoutId) {
+		return workoutExerciseRepository.getByWorkoutId(workoutId);
 	}
 }

@@ -1,12 +1,27 @@
 package com.gym.management.membership.controller;
 
-import com.gym.management.membership.model.Member;
-import com.gym.management.membership.service.MemberService;
-import lombok.RequiredArgsConstructor;
-import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.*;
-
 import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpEntity;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpMethod;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.client.RestTemplate;
+
+import com.gym.management.membership.model.Member;
+import com.gym.management.membership.service.JwtService;
+import com.gym.management.membership.service.MemberService;
+
+import lombok.RequiredArgsConstructor;
 
 /**
  * REST controller for managing member-related operations. This class provides
@@ -17,6 +32,10 @@ import java.util.List;
 @RequiredArgsConstructor
 public class MemberController {
 	private final MemberService memberService;
+	private final JwtService jwtService;
+	
+	@Autowired
+    private RestTemplate restTemplate;
 
 	/**
 	 * Endpoint to create a new member.
@@ -38,6 +57,17 @@ public class MemberController {
 	@GetMapping("/get/{id}")
 	public ResponseEntity<Member> getMember(@PathVariable int id) {
 		return ResponseEntity.ok(memberService.getMember(id));
+	}
+	
+	/**
+	 * Endpoint to retrieve a member by Email.
+	 * 
+	 * @param email The Email of the member to be retrieved.
+	 * @return ResponseEntity containing the retrieved member.
+	 */
+	@GetMapping("/getByEmail/{email}")
+	public ResponseEntity<Member> getMember(@PathVariable String email) {
+		return ResponseEntity.ok(memberService.getMemberByEmail(email));
 	}
 
 	/**
@@ -63,15 +93,27 @@ public class MemberController {
 	}
 
 	/**
-	 * Endpoint to update an existing member.
+	 * Endpoint to delete a member.
 	 * 
-	 * @param id     The ID of the member to be updated.
+	 * @param id     The ID of the member to be deleted.
 	 * @param member The member entity with updated information.
 	 * @return ResponseEntity containing the updated member.
 	 */
 	@DeleteMapping("/delete/{id}")
 	public ResponseEntity<Void> deleteMember(@PathVariable int id) {
-		memberService.deleteMember(id);
-		return ResponseEntity.ok().build();
+	    memberService.deleteMember(id);
+
+	    String fitnessServiceUrl = "http://localhost:1235/fitness/workouts/member/" + id;
+
+	    HttpHeaders headers = new HttpHeaders();
+	    String token = jwtService.getToken();  // Get JWT token
+	    headers.set("Authorization", "Bearer " + token);  // Set JWT in the header
+	    headers.set("X-Internal-Request", "true"); // Optional custom header
+
+	    HttpEntity<String> entity = new HttpEntity<>(headers);
+
+	    restTemplate.exchange(fitnessServiceUrl, HttpMethod.DELETE, entity, Void.class);
+
+	    return ResponseEntity.ok().build();
 	}
 }

@@ -30,7 +30,6 @@ import com.gym.management.fitness.repository.ExerciseRepository;
 import com.gym.management.fitness.repository.WorkoutRepository;
 import com.gym.management.fitness.service.FitnessServiceImpl;
 
-//@ExtendWith(MockitoExtension.class)
 public class FitnessServiceImplTest {
 
     @Mock

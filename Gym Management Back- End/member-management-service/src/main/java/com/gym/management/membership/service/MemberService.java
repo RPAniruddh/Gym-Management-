@@ -18,6 +18,11 @@ public interface MemberService {
 	 * Retrieves a member by ID.
 	 */
 	Member getMember(int id);
+	
+	/**
+	 * Retrieves a member by Email.
+	 */
+	Member getMemberByEmail(String email);
 
 	/**
 	 * Retrieves all members.
@@ -33,5 +38,7 @@ public interface MemberService {
 	 * Deletes a member by ID.
 	 */
 	void deleteMember(int id);
+	
+	boolean emailExists(String email);
 
 }

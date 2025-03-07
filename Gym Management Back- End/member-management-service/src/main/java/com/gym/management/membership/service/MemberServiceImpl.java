@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.gym.management.membership.exception.DuplicateEmailException;
 import com.gym.management.membership.exception.ResourceNotFoundException;
 import com.gym.management.membership.model.Member;
 import com.gym.management.membership.repository.MemberRepository;
@@ -29,7 +30,10 @@ public class MemberServiceImpl implements MemberService {
 	 */
 	@Override
 	public Member createMember(Member member) {
-		return memberRepository.save(member);
+	    if (memberRepository.existsByEmail(member.getEmail())) {
+	        throw new DuplicateEmailException("Email already exists" );
+	    }
+	    return memberRepository.save(member);
 	}
 
 	/**
@@ -87,5 +91,16 @@ public class MemberServiceImpl implements MemberService {
 			throw new ResourceNotFoundException("Member not found with ID " + id);
 		}
 		memberRepository.deleteById(id);
+	}
+
+	@Override
+	public Member getMemberByEmail(String email) {
+		return memberRepository.findByEmail(email)
+				.orElseThrow(() -> new ResourceNotFoundException("Member not found with ID " + email));
+	}
+	
+	@Override
+	public boolean emailExists(String email) {
+	    return memberRepository.findByEmail(email).isPresent();
 	}
 }

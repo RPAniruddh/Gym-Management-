@@ -20,7 +20,6 @@ import lombok.Data;
 @Table(name = "memberships")
 public class Membership {
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
 
 	@NotNull(message = "Member is mandatory")

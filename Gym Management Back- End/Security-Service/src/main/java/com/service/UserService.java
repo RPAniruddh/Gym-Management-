@@ -16,20 +16,20 @@ public class UserService {
 	private PasswordEncoder passwordEncoder;
 
 	public String addUser(UserInfo userInfo) {
-		String name = userInfo.getName();
-		UserInfo obj1 = repository.findByName(name).orElse(null);
+		String email = userInfo.getEmail();
+		UserInfo obj1 = repository.findByEmail(email).orElse(null);
 		System.out.println(obj1);
 		if (obj1 == null) {
 			userInfo.setPassword(passwordEncoder.encode(userInfo.getPassword()));
 			repository.save(userInfo);
 			return "Registration Successfully ";
 		} else {
-			return "This UserName is Already Registered.";
+			return "This Email is Already Registered.";
 		}
 	}
 
 	public String getRoles(String username) {
-		UserInfo obj2 = repository.findByName(username).orElse(null);
+		UserInfo obj2 = repository.findByEmail(username).orElse(null);
 		if (obj2 != null) {
 			return obj2.getRoles();
 		}

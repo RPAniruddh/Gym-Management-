@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.gym.management.fitness.models.Exercise;
 import com.gym.management.fitness.models.Workout;
+import com.gym.management.fitness.models.WorkoutExercise;
 import com.gym.management.fitness.service.FitnessService;
 
 import lombok.RequiredArgsConstructor;
@@ -45,7 +46,7 @@ public class FitnessController {
 	 *
 	 * @return a list of all Workout entities
 	 */
-	@GetMapping("/workouts")
+	@GetMapping("/getallworkouts")
 	public ResponseEntity<List<Workout>> getAllWorkouts() {
 		return ResponseEntity.ok(fitnessService.getAllWorkouts());
 	}
@@ -110,6 +111,12 @@ public class FitnessController {
 		return ResponseEntity.ok(fitnessService.getAllExercises());
 	}
 
+	@DeleteMapping("/exercises/{id}")
+	public ResponseEntity<Void> deleteExercise(@PathVariable(value = "id") int exerciseId) {
+		fitnessService.deleteExercise(exerciseId);
+		return ResponseEntity.noContent().build();
+	}
+
 	/**
 	 * Removes an exercise from a workout.
 	 *
@@ -122,4 +129,9 @@ public class FitnessController {
 			@PathVariable int exerciseId) {
 		return ResponseEntity.ok(fitnessService.removeExerciseFromWorkout(workoutId, exerciseId));
 	}
+	
+    @GetMapping("workouts/{id}")
+    public List<WorkoutExercise> getWorkoutById(@PathVariable int id) {
+        return fitnessService.getWorkoutById(id);
+    }
 }

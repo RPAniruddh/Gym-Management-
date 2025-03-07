@@ -45,8 +45,19 @@ public class MembershipServiceImpl implements MembershipService {
 		if (member.getMembership() != null) {
 			throw new MembershipAlreadyExistsException("Member already has an active membership");
 		}
+		
+	    if (memberService.emailExists(member.getEmail())) {
+	        Member existingMember = memberService.getMemberByEmail(member.getEmail());
+	        // Update existing member's details except for the email
+	        existingMember.setFirstName(member.getFirstName());
+	        existingMember.setLastName(member.getLastName());
+	        existingMember.setPhoneNumber(member.getPhoneNumber());
+	        existingMember.setDateOfBirth(member.getDateOfBirth());
+	        member = existingMember;
+	    }
 
 		Membership membership = new Membership();
+		membership.setId(memberId);
 		membership.setMember(member);
 		membership.setMembershipType(type);
 		membership.setStatus(Membership.MembershipStatus.ACTIVE);
@@ -54,8 +65,10 @@ public class MembershipServiceImpl implements MembershipService {
 		membership.setEndDate(calculateEndDate(type));
 
 		member.setMembership(membership);
-		memberService.createMember(member);
+		memberService.updateMember(member.getId(), member);
 
+		System.out.println(membership.getId());
+		
 		return membership;
 	}
 
@@ -80,7 +93,7 @@ public class MembershipServiceImpl implements MembershipService {
 		membership.setEndDate(calculateEndDate(membership.getMembershipType()));
 		membership.setStatus(Membership.MembershipStatus.ACTIVE);
 
-		memberService.createMember(member);
+		memberService.updateMember(member.getId(), member);
 		return membership;
 	}
 
@@ -105,7 +118,7 @@ public class MembershipServiceImpl implements MembershipService {
 		membership.setMembershipType(newType);
 		membership.setEndDate(calculateEndDate(newType));
 
-		memberService.createMember(member);
+		memberService.updateMember(member.getId(), member);
 		return membership;
 	}
 
@@ -126,7 +139,7 @@ public class MembershipServiceImpl implements MembershipService {
 		}
 
 		membership.setStatus(Membership.MembershipStatus.INACTIVE);
-		memberService.createMember(member);
+		memberService.updateMember(member.getId(), member);
 	}
 
 	/**

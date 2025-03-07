@@ -36,13 +36,14 @@ public class SecurityConfig {
 	SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
 		return http.csrf(csrf -> csrf.disable()).authorizeHttpRequests(requests -> requests
 				.requestMatchers("/auth/authenticate", "/auth/getroles/**", "/auth/**").permitAll()
-				.requestMatchers("/members/add", "/members", "/members/get/{id}", "/members/delete/{id}",
-						"/members/update/{id}")
-				.hasRole("ADMIN").requestMatchers("/members/get/{id}", "/members/update/{id}").hasRole("USER")
-				.requestMatchers("/memberships/**").hasRole("ADMIN").requestMatchers("/memberships/{membershipId}")
-				.hasRole("USER").requestMatchers("/fitness/**").hasRole("ADMIN")
-				.requestMatchers("/fitness/workouts", "/fitness/workouts/{workoutId}/exercises",
-						"/fitness/workouts/member/{memberId}", "/fitness/workouts/{workoutId}/exercises/{exerciseId}")
+				.requestMatchers("/members/add", "/members", "/members/get/{id}", "/members/getByEmail/{email}",
+						"/members/delete/{id}", "/members/update/{id}")
+				.hasRole("ADMIN").requestMatchers("/members/add", "/members/get/{id}", "/members/update/{id}")
+				.hasRole("USER").requestMatchers("/memberships/**").hasRole("ADMIN")
+				.requestMatchers("/memberships/{membershipId}").hasRole("USER").requestMatchers("/fitness/**")
+				.hasRole("ADMIN")
+				.requestMatchers("/fitness/workouts", "/fitness/workouts/member/{memberId}", "/fitness/workouts/**",
+						"/fitness/exercises")
 				.hasRole("USER").anyRequest().authenticated())
 				.sessionManagement(management -> management.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
 				.authenticationProvider(authenticationProvider())

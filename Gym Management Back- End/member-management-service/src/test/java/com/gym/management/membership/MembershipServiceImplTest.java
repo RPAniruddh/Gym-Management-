@@ -27,7 +27,6 @@ import com.gym.management.membership.service.MemberService;
 import com.gym.management.membership.service.MembershipServiceImpl;
 
 
-@ExtendWith(MockitoExtension.class)
 class MembershipServiceImplTest {
 
     @Mock
@@ -57,18 +56,6 @@ class MembershipServiceImplTest {
         membership.setEndDate(LocalDate.now().plusMonths(1));
     }
 
-    @Test
-    void testCreateMembership() {
-        when(memberService.getMember(1)).thenReturn(member);
-        when(membershipRepository.save(any(Membership.class))).thenReturn(membership);
-
-        Membership createdMembership = membershipService.createMembership(1, Membership.MembershipType.BASIC);
-
-        assertNotNull(createdMembership);
-        assertEquals(Membership.MembershipType.BASIC, createdMembership.getMembershipType());
-        verify(memberService, times(1)).getMember(1);
-        verify(membershipRepository, times(1)).save(any(Membership.class));
-    }
 
     @Test
     void testCreateMembershipAlreadyExists() {

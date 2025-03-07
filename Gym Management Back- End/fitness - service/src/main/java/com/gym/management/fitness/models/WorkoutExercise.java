@@ -31,8 +31,16 @@ public class WorkoutExercise {
 	@JsonIgnore
 	private Exercise exercise;
 
+    private String exerciseName;
+
+	
 	private Integer sets;
 	private Integer reps;
 	private Double weight;
 	private LocalDateTime createdAt = LocalDateTime.now();
+	@Override
+	public String toString() {
+		return "WorkoutExercise [id=" + id + ", workout=" + workout + ", sets=" + sets
+				+ ", reps=" + reps + ", weight=" + weight + ", createdAt=" + createdAt + "]";
+	}
 }

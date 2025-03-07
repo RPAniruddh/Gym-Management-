@@ -49,10 +49,10 @@ public class AuthController {
 
     @PostMapping("/authenticate")		//http://localhost:9090/auth/authenticate
     public String authenticateAndGetToken(@RequestBody AuthRequest authRequest) {
-        Authentication authentication = authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(authRequest.getUsername(), authRequest.getPassword()));
+        Authentication authentication = authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(authRequest.getEmail(), authRequest.getPassword()));
         if (authentication.isAuthenticated()) {
-        	UserInfo obj = repo.findByName(authRequest.getUsername()).orElse(null);
-            return jwtService.generateToken(authRequest.getUsername(),obj.getRoles());
+        	UserInfo obj = repo.findByEmail(authRequest.getEmail()).orElse(null);
+            return jwtService.generateToken(authRequest.getEmail(),obj.getRoles());
         } else {
             throw new UsernameNotFoundException("invalid user request !");
         }

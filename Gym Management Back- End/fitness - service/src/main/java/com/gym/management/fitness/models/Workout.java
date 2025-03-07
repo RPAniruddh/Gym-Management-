@@ -32,7 +32,7 @@ public class Workout {
 	private String notes;
 	private LocalDateTime createdAt = LocalDateTime.now();
 
-	@OneToMany(mappedBy = "workout", cascade = CascadeType.ALL)
+	@OneToMany(mappedBy = "workout", cascade = CascadeType.ALL, orphanRemoval = true)
 	private List<WorkoutExercise> exercises = new ArrayList<>();
 
 	@Override

@@ -1,9 +1,11 @@
 package com.gym.management.fitness.service;
 
 import java.util.List;
+
+import com.gym.management.fitness.exception.ResourceNotFoundException;
 import com.gym.management.fitness.models.Exercise;
 import com.gym.management.fitness.models.Workout;
-import com.gym.management.fitness.exception.ResourceNotFoundException;
+import com.gym.management.fitness.models.WorkoutExercise;
 
 /**
  * Service interface for managing fitness-related operations. Defines methods
@@ -43,6 +45,11 @@ public interface FitnessService {
 	List<Exercise> getAllExercises();
 
 	/**
+	 * Deletes an exercise.
+	 */
+	void deleteExercise(int exerciseId) throws ResourceNotFoundException;
+
+	/**
 	 * Retrieves all workouts.
 	 */
 	List<Workout> getAllWorkouts();
@@ -51,4 +58,6 @@ public interface FitnessService {
 	 * Removes an exercise from a workout.
 	 */
 	Workout removeExerciseFromWorkout(int workoutId, int exerciseId) throws ResourceNotFoundException;
+	
+	List<WorkoutExercise> getWorkoutById(int workoutId);
 }
